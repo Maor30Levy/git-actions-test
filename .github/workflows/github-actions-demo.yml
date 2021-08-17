@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  Explore-GitHub-Actions:
+  get_commits_timestamps:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.step1.outputs.timestamp }}
@@ -27,6 +27,11 @@ jobs:
           git log -1 --format="%at">dev_timestamp
           echo "::set-output name=timestamp::$(sed -n '1p' dev_timestamp)"
 
+    calc gap:
+      runs-on: ubuntu-latest
+      needs: get_commits_timestamps
+      steps:
+        - run: echo ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
 
 
 #runs:
