@@ -15,7 +15,7 @@ jobs:
       - name: print dev-branch timestamp
         uses: actions/checkout@v2
         with:
-          repository: git-actions-test
+          repository: Maor30Levy/git-actions-test
           path: dev-branch
       - run: |
           echo "Dev branch last commit:"
