@@ -9,8 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo "Main branch last commit:"
-      - run: GIT_TIME=git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S
-      - run: echo "$GIT_TIME"
+      - run: git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S>git_time.txt
+      - run: GIT_TIME=$(sed -n '1p' ./git_time.txt)
+      - run: echo $GIT_TIME
 #      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
 #      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 #      - name: Check out repository code
