@@ -15,8 +15,7 @@ jobs:
         uses: actions/checkout@v2
       - run: |
           echo "Main branch last commit:"
-          git log -1 --format="%at">main_timestamp
-          echo "::set-output name=timestamp::$(sed -n '1p' main_timestamp)"
+          echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
       - name: print dev-branch timestamp
         id: step2
         uses: actions/checkout@v2
@@ -24,8 +23,7 @@ jobs:
           ref: dev-branch
       - run: |
           echo "Dev branch last commit:"
-          git log -1 --format="%at">dev_timestamp
-          echo "::set-output name=timestamp::$(sed -n '1p' dev_timestamp)"
+          echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
 
   calc_gap:
     runs-on: ubuntu-latest
