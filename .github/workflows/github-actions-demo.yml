@@ -23,7 +23,7 @@ jobs:
           ref: dev-branch
       - run: |
           echo "Dev branch last commit:"
-          echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
+          echo "::set-output name=timestamp::test"
 
   calc_gap:
     runs-on: ubuntu-latest
