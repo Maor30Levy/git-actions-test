@@ -11,14 +11,14 @@ jobs:
         uses: actions/checkout@v2
       - run: |
           echo "Main branch last commit:"
-          git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S
+          git log -1 --format="%at"
       - name: print dev-branch timestamp
         uses: actions/checkout@v2
         with:
           ref: dev-branch
       - run: |
           echo "Dev branch last commit:"
-          git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S
+          git log -1 --format="%at"
 
 
 
