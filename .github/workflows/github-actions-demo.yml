@@ -28,7 +28,7 @@ jobs:
           echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
 
 
-  calc_gap:
+  calculate_gap:
     runs-on: ubuntu-latest
     needs: get_commits_timestamps
     steps:
@@ -38,7 +38,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
-      - run: node .github/workflows/main.js  ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
+      - id: calc_gap
+        run: |
+          npm install
+          npm start ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
+      - run: echo ${{steps.calc_gap.outputs.gap}}
 
 #runs:
 #    using: 'node12'
