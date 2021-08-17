@@ -12,6 +12,14 @@ jobs:
       - run: |
           echo "Main branch last commit:"
           git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S
+      - name: print dev-branch timestamp
+        uses: actions/checkout@v2
+        with:
+          repository: git-actions-test
+          path: dev-branch
+      - run: |
+          echo "Dev branch last commit:"
+          git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S
 #      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
 #      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 #      - name: Check out repository code
