@@ -10,7 +10,7 @@ jobs:
       - name: print main timestamp
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          ref: dev-branch
       - run: |
           git branch
           echo "Main branch last commit:"
