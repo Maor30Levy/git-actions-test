@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  Explore-GitHub-Actions:
+  analyze-tags:
     runs-on: ubuntu-latest
     outputs:
       previous-tag: ${{ steps.previoustag.outputs.tag }}
