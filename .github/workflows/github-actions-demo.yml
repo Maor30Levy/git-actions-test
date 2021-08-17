@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: print main timestamp
         uses: actions/checkout@v2
-        run: |
+      - run: |
           echo "Main branch last commit:"
           git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S
 #      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
