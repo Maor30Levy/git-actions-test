@@ -44,7 +44,7 @@ jobs:
       output2: ${{ steps.step2.outputs.test }}
     steps:
       - id: step1
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - run: |
           git log -1 --format="%at">git_time
           echo "::set-output name=test::$(sed -n '1p' git_time)"
