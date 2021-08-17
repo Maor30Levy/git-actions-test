@@ -43,12 +43,15 @@ jobs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
     steps:
-      - id: step1
-      - uses: actions/checkout@v2
+      - name: step1
+        id: step1
+        uses: actions/checkout@v2
       - run: |
           git log -1 --format="%at">git_time
           echo "::set-output name=test::$(sed -n '1p' git_time)"
-      - id: step2
+
+      - name: step2
+        id: step2
       - run: echo "::set-output name=test::world"
   job2:
     runs-on: ubuntu-latest
