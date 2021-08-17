@@ -41,7 +41,7 @@ jobs:
       - id: calc_gap
         run: |
           npm install
-          npm start ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
+          node ./src/main.js  ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
       - run: echo ${{steps.calc_gap.outputs.gap}}
 
 #runs:
