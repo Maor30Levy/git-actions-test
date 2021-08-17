@@ -16,6 +16,8 @@ jobs:
       - run: |
           echo "Main branch last commit:"
           echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
+          echo "12345">text
+          cat text
       - name: print dev-branch timestamp
         id: step2
         uses: actions/checkout@v2
@@ -24,6 +26,7 @@ jobs:
       - run: |
           echo "Dev branch last commit:"
           echo "::set-output name=timestamp::test"
+          cat text
 
   calc_gap:
     runs-on: ubuntu-latest
