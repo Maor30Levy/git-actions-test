@@ -11,18 +11,19 @@ jobs:
       output2: ${{ steps.step2.outputs.timestamp }}
     steps:
       - name: print main timestamp
-        id: step1
+        id: set_git
         uses: actions/checkout@v2
-        run: |
+      - id: step1
+      - run: |
           echo "Main branch last commit:"
           echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
           echo "12345">text
           echo $(sed -n '1p' text)
       - name: print dev-branch timestamp
         id: step2
-        uses: actions/checkout@v2
-        with:
-          ref: dev-branch
+#        uses: actions/checkout@v2
+#        with:
+#          ref: dev-branch
         run: |
           echo "Dev branch last commit:"
           echo "::set-output name=timestamp::test"
