@@ -3,28 +3,11 @@ on:
   push:
     branches:
       - main
-jobs:
-  analyze-tags:
-    runs-on: ubuntu-latest
-    outputs:
-      previous-tag: ${{ steps.previoustag.outputs.tag }}
-      timestamp-diff: ${{ steps.diff.outputs.timestamp-diff }}
-      steps:
-        - uses: actions/checkout@v2.3.3
-          with:
-            fetch-depth: 0
-        #▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼#
-        - name: Get previous tag
-          id: previoustag
-          uses: "WyriHaximus/github-action-get-previous-tag@v1"
-        #▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲#
-        - name: Get seconds from previous tag to now
-          id: diff
-          shell: bash
-          env:
-            TIMESTAMP_TAG: ${{ steps.previoustag.outputs.timestamp }}
-          run: |
-            echo "::set-output name=timestamp-diff::$(expr $(printf '%(%s)T') - $TIMESTAMP_TAG)"
+#jobs:
+#  Explore-GitHub-Actions:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: echo "git status"
 #      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
 #      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 #      - name: Check out repository code
@@ -35,3 +18,6 @@ jobs:
 #        run: |
 #          ls ${{ github.workspace }}
 #      - run: echo "🍏 This job's status is ${{ job.status }}."
+runs:
+    using: 'node12'
+    main: 'main.js'
