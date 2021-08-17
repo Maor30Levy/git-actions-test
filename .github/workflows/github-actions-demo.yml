@@ -6,19 +6,26 @@ on:
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.timestamp }}
+      output2: ${{ steps.step2.outputs.timestamp }}
     steps:
       - name: print main timestamp
+        id: step1
         uses: actions/checkout@v2
       - run: |
           echo "Main branch last commit:"
-          git log -1 --format="%at"
+          git log -1 --format="%at">main_timestamp
+          echo "::set-output name=timestamp::$(sed -n '1p' main_timestamp)"
       - name: print dev-branch timestamp
+        id: step2
         uses: actions/checkout@v2
         with:
           ref: dev-branch
       - run: |
           echo "Dev branch last commit:"
-          git log -1 --format="%at"
+          git log -1 --format="%at">dev_timestamp
+          echo "::set-output name=timestamp::$(sed -n '1p' dev_timestamp)"
 
 
 
