@@ -38,8 +38,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
-      - run: node .github/workflows/main.js
-      - run: echo ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
+      - run: node .github/workflows/main.js  ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
 
 #runs:
 #    using: 'node12'
