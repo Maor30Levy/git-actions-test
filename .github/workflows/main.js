@@ -1,2 +1,1 @@
-const { exec } = require('child_process');
-exec('git --version')
+console.log('node program')
