@@ -9,21 +9,16 @@ jobs:
     steps:
       - name: print main timestamp
         uses: actions/checkout@v2
+      - run: |
+          echo "Main branch last commit:"
+          git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S
+      - name: print dev-branch timestamp
+        uses: actions/checkout@v2
         with:
           ref: dev-branch
       - run: |
-          git branch
-          echo "Main branch last commit:"
+          echo "Dev branch last commit:"
           git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S
-#      - name: print dev-branch timestamp
-#        uses: actions/checkout@v2
-#        with:
-#          repository: Maor30Levy/git-actions-test
-#          path: dev-branch
-#      - run: |
-#          echo "Dev branch last commit:"
-#          git branch
-#          git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S
 
 
 
