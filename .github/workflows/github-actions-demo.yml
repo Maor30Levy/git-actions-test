@@ -3,61 +3,60 @@ on:
   push:
     branches:
       - main
-#jobs:
-#  get_commits_timestamps:
-#    runs-on: ubuntu-latest
-#    outputs:
-#      output1: ${{ steps.step1.outputs.timestamp }}
-#      output2: ${{ steps.step2.outputs.timestamp }}
-#    steps:
-#      - name: print main timestamp
-#        id: step1
-#        uses: actions/checkout@v2
-#      - run: |
-#          echo "Main branch last commit:"
-#          echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
-#          echo "12345">text
-#          echo $(sed -n '1p' text)
-#      - name: print dev-branch timestamp
-#        id: step2
-#        uses: actions/checkout@v2
-#        with:
-#          ref: dev-branch
-#      - run: |
-#          echo "Dev branch last commit:"
-#          echo "::set-output name=timestamp::test"
-#
-#
-#  calc_gap:
-#    runs-on: ubuntu-latest
-#    needs: get_commits_timestamps
-#    steps:
-#      - run: echo ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
-
-
 jobs:
-  job1:
+  get_commits_timestamps:
     runs-on: ubuntu-latest
-    # Map a step output to a job output
     outputs:
-      output1: ${{ steps.step1.outputs.test }}
-      output2: ${{ steps.step2.outputs.test }}
+      output1: ${{ steps.step1.outputs.timestamp }}
+      output2: ${{ steps.step2.outputs.timestamp }}
     steps:
-      - name: step1
+      - name: print main timestamp
         id: step1
         uses: actions/checkout@v2
       - run: |
-          git log -1 --format="%at">git_time
-          echo "::set-output name=test::$(sed -n '1p' git_time)"
-
-      - name: step2
+          echo "Main branch last commit:"
+          echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
+          echo "12345">text
+          echo $(sed -n '1p' text)
+      - name: print dev-branch timestamp
         id: step2
-      - run: echo "::set-output name=test::world"
-  job2:
+        uses: actions/checkout@v2
+        with:
+          ref: dev-branch
+      - run: |
+          echo "Dev branch last commit:"
+          echo "::set-output name=timestamp::test"
+
+
+  calc_gap:
     runs-on: ubuntu-latest
-    needs: job1
+    needs: get_commits_timestamps
     steps:
-      - run: echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
+      - run: echo ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
+
+
+#jobs:
+#  job1:
+#    runs-on: ubuntu-latest
+#    # Map a step output to a job output
+#    outputs:
+#      output1: ${{ steps.step1.outputs.test }}
+#      output2: ${{ steps.step2.outputs.test }}
+#    steps:
+#      - name: step1
+#        id: step1
+#        uses: actions/checkout@v2
+#      - run: |
+#          git log -1 --format="%at">git_time
+#          echo "::set-output name=test::$(sed -n '1p' git_time)"
+#      - name: step2
+#        id: step2
+#      - run: echo "::set-output name=test::world"
+#  job2:
+#    runs-on: ubuntu-latest
+#    needs: job1
+#    steps:
+#      - run: echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
 
 
 #runs:
