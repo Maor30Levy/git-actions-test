@@ -7,7 +7,6 @@ try{
     const gapSec = mainTime-devTime;
     const gapHour = gapSec/60;
     const result = gapHour>=allowedGap
-    // console.log(mainTime,devTime, mainTime-devTime)
     core.setOutput("isExceededGap", result);
 
 }catch (e) {
