@@ -25,7 +25,7 @@ jobs:
       - id: step2
         run: |
           echo "Extracting last commit from Dev branch:"
-          git log -1
+          git log --format='%ae'
           echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
 
 
