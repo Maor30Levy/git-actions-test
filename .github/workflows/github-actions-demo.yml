@@ -37,12 +37,12 @@ jobs:
       - name: set node
         uses: actions/setup-node@v2
         with:
-          node-version: 12.x
+          node-version: 14.x
       - id: calc_gap
         run: |
           npm install
-          node ./src/main.js  ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}}
-      - run: echo ${{steps.calc_gap.outputs.gap}}
+          node ./src/main.js  ${{needs.get_commits_timestamps.outputs.output1}} ${{needs.get_commits_timestamps.outputs.output2}} 1
+      - run: echo ${{steps.calc_gap.outputs.isExceededGap}}
 
 #runs:
 #    using: 'node12'
