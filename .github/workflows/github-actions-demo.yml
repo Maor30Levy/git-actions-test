@@ -21,7 +21,7 @@ jobs:
       - name: set dev branch
         uses: actions/checkout@v2
         with:
-          ref: dev-branch
+          ref: develop
       - id: step2
         run: |
           echo "Extracting last commit from Dev branch:"
