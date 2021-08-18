@@ -13,7 +13,8 @@ jobs:
       - name: set main branch
         uses: actions/checkout@v2
         with:
-          ref: main
+          repository: Maor30Levy/test
+          path: main
       - id: step1
         run: |
           echo "Extracting last commit from Main branch:"
@@ -22,7 +23,8 @@ jobs:
       - name: set dev branch
         uses: actions/checkout@v2
         with:
-          ref: main
+          repository: Maor30Levy/test
+            path: develop
       - id: step2
         run: |
           echo "Extracting last commit from Dev branch:"
