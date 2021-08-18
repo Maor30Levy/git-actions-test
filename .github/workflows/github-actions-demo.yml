@@ -2,7 +2,7 @@ name: Check commits gaps
 on:
   push:
     branches:
-      - develop
+      - main
 jobs:
   get_commits_timestamps:
     runs-on: ubuntu-latest
