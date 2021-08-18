@@ -1,8 +1,7 @@
 name: Check commits gaps
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '3/34 * * * *'
 jobs:
   get_commits_timestamps:
     runs-on: ubuntu-latest
