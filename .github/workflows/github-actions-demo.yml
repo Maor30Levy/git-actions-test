@@ -17,7 +17,7 @@ jobs:
       - id: step1
         run: |
           echo "Extracting last commit from Main branch:"
-          git log --format='%ae' HASH
+          git log --format='%ae'
           echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
       - name: set dev branch
         uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
       - id: step2
         run: |
           echo "Extracting last commit from Dev branch:"
-          git log --format='%ae' HASH
+          git log --format='%ae'
           echo "::set-output name=timestamp::$(git log -1 --format="%at" | sed -n '1p')"
 
 
