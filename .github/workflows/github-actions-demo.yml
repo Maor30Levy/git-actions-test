@@ -1,7 +1,7 @@
 name: Check commits gaps
 on:
   schedule:
-    - cron: '*/43 * * * *'
+    - cron: '* * * * *'
 jobs:
   get_commits_timestamps:
     runs-on: ubuntu-latest
