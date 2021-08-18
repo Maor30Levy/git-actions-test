@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: Maor30Levy/test
-            path: develop
+          path: develop
       - id: step2
         run: |
           echo "Extracting last commit from Dev branch:"
